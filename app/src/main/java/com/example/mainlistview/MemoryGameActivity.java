@@ -41,7 +41,7 @@ public class MemoryGameActivity extends AppCompatActivity implements Animation.A
         setContentView(R.layout.activity_memory_game);
         gl = findViewById(R.id.gl);
         tvClicks = findViewById(R.id.tvClicks);
-        animationFadeOut= AnimationUtils.loadAnimation(MemoryGameActivity.this, R.anim.fade_out);
+        animationFadeOut= AnimationUtils.loadAnimation(MemoryGameActivity.this, R.anim.fade_out_memory_game);
         animationFadeOut.setAnimationListener(this);
         btnStart=findViewById(R.id.btnStart);
         btnStart.setOnClickListener(this);

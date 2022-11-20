@@ -123,11 +123,11 @@ public class ChimpTestActivity extends AppCompatActivity implements View.OnClick
     public void createBoard() {
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
-                LinearLayout.LayoutParams LL1 = new LinearLayout.LayoutParams(150, 150);
+                LinearLayout.LayoutParams LL1 = new LinearLayout.LayoutParams(200, 200);
                 LL1.setMargins(10,10,10,10);
                 Button btn = new Button(this);
                 btn.setLayoutParams(LL1);
-                btn.setTextSize(25);
+                btn.setTextSize(40);
                 btn.setVisibility(View.INVISIBLE);
                 btn.setOnClickListener(this);
                 btn.setTextColor(Color.parseColor("#000000"));

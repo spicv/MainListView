@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Game game1 = new Game("Memory Game","Category: Memory");
         Game game2 = new Game("Find Number","Category: Speed");
         Game game3 = new Game("Chimp Test","Category: Speed");
+        Game game4 = new Game("Simon","Category: Memory");
 
 
         //phase 2 - add to array list
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         gamesList.add(game1);
         gamesList.add(game2);
         gamesList.add(game3);
+        gamesList.add(game4);
 
 
 
@@ -62,6 +64,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
         if (i==2){
             it=new Intent(this,ChimpTestActivity.class);
+            startActivity(it);
+        }
+        if (i==3){
+            it=new Intent(this,SimonActivity.class);
             startActivity(it);
         }
     }
