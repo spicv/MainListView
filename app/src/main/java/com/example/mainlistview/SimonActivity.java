@@ -19,11 +19,10 @@ public class SimonActivity extends AppCompatActivity implements View.OnClickList
     Button btnStart;
     Button[][]buttons=new Button[3][3];
     ArrayList<Button> buttonOrder = new ArrayList<>();
-    RunIt test;
+    RunIt playAnim;
 
     Animation animationFadeOut;
 
-    int index=0;
     int order=0;
 
 
@@ -32,7 +31,7 @@ public class SimonActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simon);
         gl=findViewById(R.id.gl);
-        test = new RunIt();
+        playAnim = new RunIt();
         btnStart=findViewById(R.id.btnStart);
         btnStart.setOnClickListener(this);
         animationFadeOut= AnimationUtils.loadAnimation(SimonActivity.this, R.anim.fade_out_simon);
@@ -48,12 +47,22 @@ public class SimonActivity extends AppCompatActivity implements View.OnClickList
 
         @Override
         public void run() {
+            for (int i = 0; i < buttons.length; i++) {
+                for (int j = 0; j < buttons[i].length; j++) {
+                    buttons[i][j].setClickable(false);
+                }
+            }
             for (int i = 0; i < buttonOrder.size(); i++) {
-                buttonOrder.get(i).startAnimation(animationFadeOut);
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(600);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                }
+                buttonOrder.get(i).startAnimation(animationFadeOut);
+            }
+            for (int i = 0; i < buttons.length; i++) {
+                for (int j = 0; j < buttons[i].length; j++) {
+                    buttons[i][j].setClickable(true);
                 }
             }
         }
@@ -68,19 +77,18 @@ public class SimonActivity extends AppCompatActivity implements View.OnClickList
             btnStart.setVisibility(View.INVISIBLE);
             gl.setVisibility(View.VISIBLE);
             addRandomBtn();
-            new Thread(test).start();
+            new Thread(playAnim).start();
         }
         if (!buttonText.equalsIgnoreCase("start game")&&b.equals(buttonOrder.get(order))){
             order++;
             if (order==buttonOrder.size()){
                 addRandomBtn();
-                new Thread(test).start();
+                new Thread(playAnim).start();
             }
         }
         else if (!buttonText.equalsIgnoreCase("start game")&&!b.equals(buttonOrder.get(order))){
             gl.setVisibility(View.INVISIBLE);
             btnStart.setVisibility(View.VISIBLE);
-            index=0;
             buttonOrder.clear();
         }
 

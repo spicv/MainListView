@@ -9,6 +9,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,7 +22,7 @@ public class MemoryGameActivity extends AppCompatActivity implements Animation.A
     ArrayList<Integer> drawableEqual = new ArrayList<>();
     ArrayList<ImageButton> equals = new ArrayList<>();
     ArrayList<ImageButton> notCorrectButtons = new ArrayList<>();
-    int[] myImageList = {R.drawable.placeholder2, R.drawable.placeholder3, R.drawable.placeholder5, R.drawable.placeholder4, R.drawable.placeholder6, R.drawable.placeholder7, R.drawable.placeholder8, R.drawable.placeholder9};
+    int[] myImageList = {R.drawable.face1, R.drawable.face2, R.drawable.face3, R.drawable.face4, R.drawable.face5, R.drawable.face6, R.drawable.face7, R.drawable.face8};
     ImageButton[][] buttons = new ImageButton[4][4];
 
     Button btnStart;
@@ -117,13 +118,14 @@ public class MemoryGameActivity extends AppCompatActivity implements Animation.A
     public void createBoard() {
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
-                LinearLayout.LayoutParams LL1 = new LinearLayout.LayoutParams(200, 200);
-                LL1.setMargins(10, 10, 10, 10);
+                LinearLayout.LayoutParams LL1 = new LinearLayout.LayoutParams(240, 240);
+                LL1.setMargins(5, 5, 5, 5);
                 ibNew = new ImageButton(this);
                 ibNew.setLayoutParams(LL1);
                 ibNew.setId(id);
                 ibNew.setOnClickListener(this);
                 ibNew.setVisibility(View.INVISIBLE);
+                ibNew.setScaleType(ImageView.ScaleType.CENTER);
                 buttons[i][j] = ibNew;
                 notCorrectButtons.add(ibNew);
                 gl.addView(ibNew);
@@ -158,7 +160,7 @@ public class MemoryGameActivity extends AppCompatActivity implements Animation.A
         }
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
-                buttons[i][j].setImageResource(R.drawable.placeholder1);
+                buttons[i][j].setImageResource(R.drawable.back_image);
             }
         }
     }
@@ -171,7 +173,7 @@ public class MemoryGameActivity extends AppCompatActivity implements Animation.A
     public void onAnimationEnd(Animation animation) {
         if(animation==animationFadeOut&&equals.size()>0) {
             for (int i = 0; i < equals.size(); i++) {
-                equals.get(i).setImageResource(R.drawable.placeholder1);
+                equals.get(i).setImageResource(R.drawable.back_image);
             }
             drawableEqual.clear();
             equals.clear();

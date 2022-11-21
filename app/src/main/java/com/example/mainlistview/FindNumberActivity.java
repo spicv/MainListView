@@ -26,6 +26,7 @@ public class FindNumberActivity extends AppCompatActivity implements View.OnClic
     int btnNumber,extraTurns=0;
     long startTime,difference,counter;
     double avg;
+    RunIt2 playAnim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,7 @@ public class FindNumberActivity extends AppCompatActivity implements View.OnClic
         tvTime=findViewById(R.id.tvTime);
         btnStart=findViewById(R.id.btnStart);
         btnStart.setOnClickListener(this);
+        playAnim = new RunIt2();
 
         numbers.add("one");
         numbers.add("two");
@@ -51,6 +53,24 @@ public class FindNumberActivity extends AppCompatActivity implements View.OnClic
             value++;
         }
         createBoard();
+    }
+
+    public class RunIt2 implements Runnable{
+
+        public RunIt2() {
+        }
+
+        @Override
+        public void run() {
+            gl.setBackgroundColor(Color.RED);
+            try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            gl.setBackgroundColor(Color.WHITE);
+        }
+
     }
 
     @Override
@@ -76,8 +96,9 @@ public class FindNumberActivity extends AppCompatActivity implements View.OnClic
                 }
             }
             else if (getNumber.get(str) != btnNumber && !buttonText.equalsIgnoreCase("start game")) {
-                    stopGame();
-                    tvTime.setText("Wrong button, try again");
+                new Thread(playAnim).start();
+                //stopGame();
+                    //tvTime.setText("Wrong button, try again");
             }
     }
 
@@ -109,12 +130,13 @@ public class FindNumberActivity extends AppCompatActivity implements View.OnClic
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
                 LinearLayout.LayoutParams LL1=new LinearLayout.LayoutParams(330,330);
-                LL1.setMargins(10,10,10,10);
+               // LL1.setMargins(10,10,10,10);
                 Button btn=new Button(this);
                 btn.setLayoutParams(LL1);
-                btn.setTextSize(40);
+                btn.setTextSize(50);
                 btn.setVisibility(View.INVISIBLE);
-                btn.setBackgroundColor(Color.parseColor("#989898"));
+                btn.setTextColor(Color.parseColor("#FFFFFF"));
+                btn.setBackground(getDrawable(R.drawable.back_image));
                 btn.setOnClickListener(this);
                 buttons[i][j]=btn;
                 gl.addView(btn);

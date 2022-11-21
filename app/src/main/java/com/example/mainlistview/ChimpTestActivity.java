@@ -92,7 +92,7 @@ public class ChimpTestActivity extends AppCompatActivity implements View.OnClick
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
                 if (buttons[i][j].getVisibility() == View.VISIBLE) {
-                    buttons[i][j].setTextColor(Color.parseColor("#F64A4A"));
+                    buttons[i][j].setTextColor(Color.parseColor("#000000"));
                 }
             }
         }
@@ -104,7 +104,7 @@ public class ChimpTestActivity extends AppCompatActivity implements View.OnClick
         visibleCounter++;
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
-                buttons[i][j].setTextColor(Color.parseColor("#000000"));
+                buttons[i][j].setTextColor(Color.parseColor("#FFFFFF"));
             }
         }
         randomise(visibleCounter);
@@ -115,7 +115,7 @@ public class ChimpTestActivity extends AppCompatActivity implements View.OnClick
         gl.setVisibility(View.INVISIBLE);
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
-                buttons[i][j].setTextColor(Color.parseColor("#000000"));
+                buttons[i][j].setTextColor(Color.parseColor("#FFFFFF"));
             }
         }
     }
@@ -130,8 +130,8 @@ public class ChimpTestActivity extends AppCompatActivity implements View.OnClick
                 btn.setTextSize(40);
                 btn.setVisibility(View.INVISIBLE);
                 btn.setOnClickListener(this);
-                btn.setTextColor(Color.parseColor("#000000"));
-                btn.setBackgroundColor(Color.parseColor("#F64A4A"));
+                btn.setTextColor(Color.parseColor("#FFFFFF"));
+                btn.setBackground(getDrawable(R.drawable.back_image));
                 buttons[i][j] = btn;
                 gl.addView(btn);
             }
