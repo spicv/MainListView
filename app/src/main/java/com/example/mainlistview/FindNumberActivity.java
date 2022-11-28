@@ -16,6 +16,7 @@ import java.util.Random;
 
 public class FindNumberActivity extends AppCompatActivity implements View.OnClickListener {
     GridLayout gl;
+    GridLayout[]grid=new GridLayout[1];
     TextView tvNumber,tvTime;
     Button btnStart;
     ArrayList<String> numbers=new ArrayList<>();
@@ -37,6 +38,8 @@ public class FindNumberActivity extends AppCompatActivity implements View.OnClic
         btnStart=findViewById(R.id.btnStart);
         btnStart.setOnClickListener(this);
         playAnim = new RunIt2();
+
+        grid[0]=gl;
 
         numbers.add("one");
         numbers.add("two");
@@ -62,13 +65,11 @@ public class FindNumberActivity extends AppCompatActivity implements View.OnClic
 
         @Override
         public void run() {
-            gl.setBackgroundColor(Color.RED);
-            try {
-                    Thread.sleep(1000);
+                try {
+                    Thread.sleep(10000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            gl.setBackgroundColor(Color.WHITE);
         }
 
     }
@@ -96,9 +97,9 @@ public class FindNumberActivity extends AppCompatActivity implements View.OnClic
                 }
             }
             else if (getNumber.get(str) != btnNumber && !buttonText.equalsIgnoreCase("start game")) {
-                new Thread(playAnim).start();
-                //stopGame();
-                    //tvTime.setText("Wrong button, try again");
+                //new Thread(playAnim).start();
+                stopGame();
+                tvTime.setText("Wrong button, try again");
             }
     }
 
